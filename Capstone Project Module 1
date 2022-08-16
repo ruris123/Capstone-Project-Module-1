@@ -1,0 +1,167 @@
+
+def menu():
+    print (''' 
+    Rental Mobil Ruri
+    1. Tampilkan data sewa
+    2. Membuat data sewa
+    3. Mengubah data sewa
+    4. Menghapus data sewa
+    5. Keluar
+    ''')
+    
+data = [
+    ['B 1234 abc','Avanza','Budi','Jl. Mawar No. 5 Jakarta Utara', +6281234567891],
+    ['B 1235 abc','Avanza','Tono','Jl. Melati No. 7 Jakarta Barat', +6281234567892]]
+
+
+def menu1 ():
+    print (''' 
+    1. Tampilkan Semua Data Sewa
+    2. Cari Data sewa
+    3. Kembali Ke Menu Utama
+    ''')
+    menuSub1 = float(input('Masukan Pilihan : '))
+    if menuSub1 == 1:
+        print('Data Pinjaman\n')
+        print('No\tNopol\t        | Jenis Mobil \t| Nama\t| Alamat\t                        | No Telp')
+        for i in range(len(data)) :
+            print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+        menu1()
+    elif menuSub1 == 2:
+        cari = str(input('Masukan No Polisi : '))
+        for i in range (len(data)):
+            if cari == data[i][0]:
+                print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+                menu1()
+        else :
+            print('Data Yang Di Cari Tidak Ada')
+            menu1()
+    elif menuSub1 == 3:
+        menu()
+    else :
+        print ('Silahkan Masukan Angka Yang Benar')
+        menu1()
+
+def menu2 ():
+    print('''
+    1. Masukan Data
+    2. Kembali Ke Menu Utama 
+    ''')
+    menuSub2 = float(input('Masukan Pilihan :'))
+    if menuSub2 == 1:
+        data_nopol = [item[0] for item in data]
+        nopol = input('Masukan No Polisi : ')
+        while nopol in data_nopol :
+            print('Data Yang Di Masukan Sudah Ada')
+            nopol = input('Masukan No Polisi : ')
+        mobil = input('Masukan Jenis Mobil : ')
+        nama = input('Masukan Nama : ')
+        alamat = input('Masukan Alamat : ')
+        telp = input('Masukan No. Telp : ')
+        cek = input('Simpan Data Ya/Tidak :')
+        if cek == 'Ya':
+            data.append([nopol,mobil,nama,alamat,telp])
+            print('Data Pinjaman\n')
+            print('No\tNopol\t        | Jenis Mobil \t| Nama\t| Alamat\t                        | No Telp')
+            for i in range(len(data)) :
+                print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+        elif cek == 'Tidak':
+            menu2()
+        else :
+            print('Masukan Pilihan Yang Benar')
+            menu2()
+        menu2()
+    elif menuSub2 == 2:
+        menu()
+    else :
+        print('Masukan Pilihan yang benar')
+        menu2()
+
+def menu3():
+    print(''' 
+    1. Ubah Data Sewa 
+    2. Kembali Ke Menu Utama
+    ''')
+    menuSub3 = float(input('Masukan Pilihan : '))
+    if menuSub3 == 1:
+        cari = str(input('Masukan Data No Polisi Yang Akan Di Ubah : '))
+        for i in range (len(data)):
+            if cari == data[i][0]:
+                print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+                cek = input('Lanjutkan Update Ya/Tidak :')
+                if cek == 'Ya':
+                    print('Silahkan Masukan Data Baru ')
+                    nopol = input('Masukan No Polisi : ')
+                    data[i][0]= nopol
+                    mobil = input('Masukan Jenis Mobil : ')
+                    data[i][1]= mobil
+                    nama = input('Masukan Nama : ')
+                    data[i][2]= nama
+                    alamat = input('Masukan Alamat : ')
+                    data[i][3]= alamat
+                    telp = input('Masukan No. Telp : ')
+                    data[i][4]= telp
+                    print('Data Pinjaman')
+                    print('No\tNopol\t        | Jenis Mobil \t| Nama\t| Alamat\t                        | No Telp')
+                    for i in range(len(data)) :                   
+                        print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+                elif cek == 'Tidak':
+                    menu3()
+                else :
+                    print('Masukan Pilihan Yang Benar')
+                    menu3()  
+        else :
+            print ('Data Yang Di Cari Tidak Ada')
+            menu3()
+    elif menuSub3 ==2:
+        menu()
+    else:
+        print('Masukan Pilihan Yang Benar')
+        menu3()
+ 
+
+def menu4():
+    print(''' 
+    1. Hapus Data Sewa 
+    2. Kembali Ke Menu Utama
+    ''')
+    menuSub4 = float(input('Masukan Pilihan : '))
+    if menuSub4 == 1:
+        hapus = str(input('Masukan Data No Polisi Yang Akan Di Hapus : '))
+        for i in range(len(data)) :
+            if hapus == data[i][0]:
+                print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+                cek = input('Lanjutkan Hapus Data Ya/Tidak :')
+                if cek == 'Ya':
+                    del data[i]
+                    print('Data Pinjaman')
+                    print('No\tNopol\t        | Jenis Mobil \t| Nama\t| Alamat\t                        | No Telp')
+                    for i in range(len(data)) :                   
+                        print(f'{i+1}\t{data[i][0]}  \t| {data[i][1]} \t| {data[i][2]} \t| {data[i][3]} \t| {data[i][4]}')
+                        print('Data Sudah Di Hapus')
+                        menu4()
+        else :
+            print('Data Yang Di Cari Tidak Ada')
+            menu4()
+    elif menuSub4 == 2:
+        menu()
+    else :
+        print('Masukan Pilihan yang benar')
+        menu4()
+
+while True:
+    menu()
+    menuUtama =int(input('masukan pilihan : '))    
+    if menuUtama == 1:
+        menu1()
+    elif menuUtama == 2:
+        menu2()
+    elif menuUtama == 3:
+        menu3() 
+    elif menuUtama == 4:
+        menu4()
+    elif menuUtama == 5:
+        break
+    else :
+        print('Masukan Pilihan Yang Benar')
+
